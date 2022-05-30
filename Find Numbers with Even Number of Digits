@@ -1,0 +1,19 @@
+class Solution {
+public:
+    
+    bool numb(int n){
+        int c = 0;
+        while(n){
+            c++;
+            n/=10;
+        }
+        return c % 2 == 0;
+    }
+    int findNumbers(vector<int>& nums) {
+        int cnt = 0;
+        for(int i = 0; i < nums.size(); i++){
+            if(numb(nums[i])) cnt++;
+        }
+        return cnt;
+    }
+};
