@@ -1,0 +1,22 @@
+class Solution {
+public:    
+    bool static compare(string& a, string& b){
+        return a.size() < b.size();
+    }
+    int longestStrChain(vector<string>& words) {
+        sort(words.begin(), words.end(), compare);
+        int n = words.size();
+        map<string, int> dp;
+        int ans = 0;
+        for(string word : words){
+            int temp = 0;
+            for(int i=0; i<word.length(); i++){
+                string predecessor = word.substr(0, i) + word.substr(i+1, word.length());
+                temp = max(temp, dp[predecessor] + 1);
+            }
+            dp[word] = temp;
+            ans = max(ans, temp);
+        }
+        return ans;
+    }
+};
