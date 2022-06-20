@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int minimumLengthEncoding(vector<string>& words) {
+        set<string> s1(words.begin(), words.end()), s2(words.begin(), words.end());
+        for(auto i : s1){
+            for(int j = 1; j < i.size(); j++){
+                s2.erase(i.substr(j));
+            }
+        } 
+        int ans = 0;
+        for(auto i : s2) ans += (i.size() + 1); 
+            
+        return ans;
+    }
+};
