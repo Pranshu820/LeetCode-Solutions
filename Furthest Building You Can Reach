@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int furthestBuilding(vector<int>& h, int b, int l) {
+        priority_queue<int> q;
+        int i = 0;
+        
+        for(i; i < h.size() - 1; i++){
+            if(h[i] >= h[i + 1]) continue;
+            
+            int diff = h[i + 1] - h[i];
+            if(b >= diff){
+                b -= diff;
+                q.push(diff);
+            }
+            
+            else if(l){
+                if(q.size()){
+                   int x = q.top();
+                    if(x > diff){
+                       b += x;
+                       q.pop();
+                       q.push(diff);
+                       b -= diff; 
+                       }
+                     }
+                l--;
+            }
+            else break;
+        }
+        return i;
+    }
+};
