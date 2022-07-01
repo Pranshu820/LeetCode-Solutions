@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int maximumUnits(vector<vector<int>>& boxTypes, int truckSize) {
+        vector<pair<int, int>> ans;
+        for(int i = 0; i < boxTypes.size(); i++){
+            ans.push_back(make_pair(boxTypes[i][1], boxTypes[i][0]));
+        }
+        
+        sort(ans.rbegin(), ans.rend());
+        
+        int sum = 0;
+        
+        for(int i = 0; i < ans.size(); i++){
+            if(ans[i].second <= truckSize){
+                sum += (ans[i].first * ans[i].second);
+                truckSize -= ans[i].second;
+            }
+            
+            else{
+                sum += (ans[i].first * truckSize);
+                truckSize = 0;
+            }
+            
+            if(!truckSize) return sum;
+        }
+        return sum;
+    }
+};
