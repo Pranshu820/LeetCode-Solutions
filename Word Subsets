@@ -1,0 +1,32 @@
+class Solution {
+public:
+    vector<string> wordSubsets(vector<string>& words1, vector<string>& words2) {
+        vector<string> ans;
+        vector<int> freq2(26, 0);
+        
+        for(auto word : words2){
+            vector<int> temp(26, 0);
+            for(auto ch: word){
+                temp[ch-'a']++;
+                freq2[ch-'a'] = max(temp[ch-'a'], freq2[ch-'a']);
+            }
+        }
+        
+        for(auto word: words1){
+            vector<int> freq1(26, 0);
+            bool flag = true;
+            for(auto ch: word){
+                freq1[ch-'a']++;
+            }            
+            for(int i=0;i<26;i++){
+                if(freq2[i] > freq1[i]){
+                    flag = false;
+                    break;
+                }
+            }            
+            if(flag) ans.push_back(word);
+        }
+        return ans;
+    }
+
+};
