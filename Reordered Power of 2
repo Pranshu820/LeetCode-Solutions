@@ -1,0 +1,16 @@
+class Solution {
+public:
+    bool reorderedPowerOf2(int n) {
+        string num = to_string(n);
+        sort(num.begin(), num.end());
+        
+        for(int i = 0; i <= 29; i++){
+            int temp = pow(2, i);
+            string temp1 = to_string(temp);
+            sort(temp1.begin(), temp1.end());
+            if(!num.compare(temp1)) return 1;
+        }
+        
+        return 0;
+    }
+};
