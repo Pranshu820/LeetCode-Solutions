@@ -1,22 +1,56 @@
 class Solution {
 public:
     vector<vector<int>> diagonalSort(vector<vector<int>>& mat) {
-        vector<int> k;
-        int m = mat.size() , n = mat[0].size();
-        for (int r=0; r<m; r++)        // r-> row
-        {
-            k.clear();
-            for (int j=0,i=r; j<n && i<m ; j++,i++) k.push_back(mat[i][j]);    // add to vector
-            sort(k.begin(),k.end());
-            for (int j=0,i=r; j<n && i<m ; j++,i++) mat[i][j]=k[j];            // replace
+        vector<int> temp;
+        int r = mat.size(), c = mat[0].size(), tr = 0, tc = 0, x = 0;
+        
+        for(int i = 1; i < c - 1; i++){
+            tc = i;
+            while(tr < r && tc < c){
+                temp.push_back(mat[tr][tc]);
+                tr++;
+                tc++;
+            }
+            
+            sort(temp.begin(), temp.end());
+            tr = 0, tc = i;
+            
+            while(tr < r && tc < c){
+                mat[tr][tc] = temp[x];
+                tr++;
+                tc++;
+                x++;
+            }
+            
+            tr = 0;
+            x = 0;
+            temp.clear();
         }
-        for (int c=1; c<n; c++)       // c->column
-        {
-            k.clear();
-            for (int i=0, j=c; j<n && i<m; i++, j++) k.push_back(mat[i][j]);   // add to vector
-            sort(k.begin(),k.end());
-            for (int i=0, j=c; j<n && i<m; i++, j++) mat[i][j] = k[i];         //replace
+        
+        tc = 0;
+        
+        for(int i = r - 2; i >= 0; i--){
+            tr = i;
+            while(tr < r && tc < c){
+                temp.push_back(mat[tr][tc]);
+                tr++;
+                tc++;
+            }
+            sort(temp.begin(), temp.end());
+            tr = i, tc = 0;
+            
+            while(tr < r && tc < c){
+                mat[tr][tc] = temp[x];
+                tr++;
+                tc++;
+                x++;
+            }
+            
+            tc = 0;
+            x = 0;
+            temp.clear();
         }
+        
         return mat;
     }
 };
