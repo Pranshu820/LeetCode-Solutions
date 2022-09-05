@@ -1,8 +1,8 @@
 class Solution {
 public:
     vector<vector<int>> levelOrder(Node* root) {
-        if(!root)  return {};
         vector<vector<int>> ans;
+        if(!root)  return ans;
         queue<Node*> q;
         q.push(root); 
         while(!q.empty()) {
