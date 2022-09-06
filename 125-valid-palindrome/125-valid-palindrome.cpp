@@ -1,34 +1,20 @@
 class Solution {
 public:
-    bool alpha(char c){
-        if((c >= '0' && c <= '9') || (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')) return 1;
-        return 0;
-    }
-    
-    char check(char c){
-        if((c >= '0' && c <= '9') || (c >= 'a' && c <= 'z')) return c;
-        c += 32;
-        return c;
-    }
-    
     bool isPalindrome(string s) {
-        int l = 0, r = s.size() - 1;
-        
-        while(l < r){
-            if(!alpha(s[l])){
-                l++;
-                continue;
-            }
-            if(!alpha(s[r])){
-                r--;
-                continue;
-            }
-            
-            if(check(s[l]) != check(s[r])) return 0;
-            l++;
-            r--;
-        }
-        
-        return 1;
+        string temp = "";
+		for(int i = 0; i < s.size(); i++){
+			if(s[i] >= 65 && s[i] <= 90) temp.push_back(s[i] + 32);
+			else if((s[i] >= 97 && s[i] <= 122) || (s[i] >= 48 && s[i] <= 57)) temp.push_back(s[i]);
+		}
+		
+		int l = 0, r = temp.size() - 1;
+		
+		while(l < r){
+			if(temp[l] != temp[r]) return 0;
+			l++;
+			r--;
+		}
+		
+		return 1;
     }
 };
