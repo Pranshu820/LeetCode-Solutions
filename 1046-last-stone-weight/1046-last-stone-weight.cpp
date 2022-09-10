@@ -7,14 +7,6 @@ public:
             int stone1 = pq.top();
             pq.pop();
             
-            // if(pq.size() == 1){
-            //     int temp = pq.top();
-            //     if(temp == stone1) return temp;
-            //     else{
-            //         return max(temp - stone1, stone1 - temp);
-            //     }
-            // }
-            
             int stone2 = pq.top();
             pq.pop();
             
