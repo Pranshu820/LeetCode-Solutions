@@ -7,13 +7,13 @@ public:
             if(s[i] == ' '){
                 reverse(temp.begin(), temp.end());
                 ans.append(temp);
-                if(i != s.size() - 1) ans.push_back(' ');
+                ans.push_back(' ');
                 temp = "";
             }
-            else{
-                temp.push_back(s[i]);
-            }
+            else temp.push_back(s[i]);
         }
+        
+        ans.erase(ans.begin() + ans.size() - 1);
         
         return ans;
     }
