@@ -8,8 +8,8 @@ public:
             else r--;
         }
         
-        vector <int> v(arr.begin() + l, arr.begin() + r + 1);
-        // for (int i = l; i <= r; i++) v.push_back(arr[i]);
+        vector <int> v;
+        for (int i = l; i <= r; i++) v.push_back(arr[i]);
         return v;
     }
 };
