@@ -1,0 +1,39 @@
+class Solution {
+public:
+    vector<vector<int>> getSkyline(vector<vector<int>>& buildings) {
+        vector<vector<int>> ans;
+        
+        vector<pair<int,int>> vp; // {coordinate, height} : +ve height = end point
+        
+        for(auto it : buildings) {
+            vp.push_back({it[0], -it[2]});
+            vp.push_back({it[1], it[2]});
+        }
+        
+        sort(vp.begin(), vp.end());
+        
+        multiset<int> st;
+        st.insert(0);
+        
+        int curr_h = 0;
+        
+        for(int i=0; i<vp.size(); ++i) {
+            int x = vp[i].first, h = vp[i].second;
+            
+            if(h < 0) {
+                st.insert(abs(h)); 
+            }
+            else {
+                st.erase(st.find(h));
+            }
+            
+            int maxi = *(st.rbegin());
+            if(curr_h != maxi) {
+                curr_h = maxi;
+                ans.push_back({x, maxi});
+            }
+        }
+        
+        return ans;
+    }
+};
