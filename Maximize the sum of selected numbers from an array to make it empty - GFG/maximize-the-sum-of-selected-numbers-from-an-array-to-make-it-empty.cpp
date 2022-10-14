@@ -21,7 +21,6 @@ class Solution{
             if(!m[temp]) m.erase(temp);
             
             if(m.find(temp - 1) != m.end()){
-                // ans += (temp - 1);
                 m[temp - 1]--;
                 if(!m[temp - 1]) m.erase(temp - 1);
             }
